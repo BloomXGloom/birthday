@@ -14,6 +14,86 @@ Lots of love,
 Junnu — your Badi Behen 🫶🏻`;
 const confetti = document.querySelector('.confetti');
 let cakeChoice = '';
+const mediaDatabase = 'birthday-media';
+const mediaStore = 'uploads';
+const permanentPhotoUrls = [
+  'https://plain-apac-prod-public.komododecks.com/202608/25/lYXCBL8tJWIQXhxS9Ka4/image.jpg',
+  'https://plain-apac-prod-public.komododecks.com/202608/25/92XJS825fDC8ATsP8oaM/image.jpg',
+  'https://plain-apac-prod-public.komododecks.com/202608/25/GNpd7nyfczh7saBvozEc/image.jpg',
+  'https://plain-apac-prod-public.komododecks.com/202608/25/4WNYU4oHCY0W1f9APbks/image.jpg'
+];
+const permanentVideoUrl = 'https://www.image2url.com/r2/default/videos/1787677649516-e67e3506-d57b-46ef-8a6b-71c5909a993c.mp4';
+
+function openMediaDatabase() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open(mediaDatabase, 1);
+    request.onupgradeneeded = () => request.result.createObjectStore(mediaStore);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+}
+
+async function saveMedia(key, file) {
+  const database = await openMediaDatabase();
+  await new Promise((resolve, reject) => {
+    const transaction = database.transaction(mediaStore, 'readwrite');
+    transaction.objectStore(mediaStore).put(file, key);
+    transaction.oncomplete = resolve;
+    transaction.onerror = () => reject(transaction.error);
+  });
+  database.close();
+}
+
+async function loadMedia(key) {
+  const database = await openMediaDatabase();
+  const file = await new Promise((resolve, reject) => {
+    const request = database.transaction(mediaStore).objectStore(mediaStore).get(key);
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+  database.close();
+  return file;
+}
+
+function displayPhoto(input, source) {
+  const card = input.closest('.photo-card');
+  const placeholder = card.querySelector('.photo-placeholder');
+  const imageUrl = typeof source === 'string' ? source : URL.createObjectURL(source);
+  placeholder.style.backgroundImage = `url(${imageUrl})`;
+  card.classList.add('has-photo');
+}
+
+function displayVideo(source) {
+  const video = document.querySelector('#birthday-video');
+  video.src = typeof source === 'string' ? source : URL.createObjectURL(source);
+  video.classList.remove('is-hidden');
+  document.querySelector('#video-placeholder').classList.add('is-hidden');
+}
+
+document.querySelector('#birthday-video').addEventListener('error', () => {
+  document.querySelector('#birthday-video').classList.add('is-hidden');
+  document.querySelector('#video-placeholder').classList.remove('is-hidden');
+});
+
+document.querySelectorAll('.photo-card input').forEach((input, index) => {
+  const key = `photo-${index + 1}`;
+  input.addEventListener('change', async () => {
+    const file = input.files[0];
+    if (!file) return;
+    displayPhoto(input, file);
+    try { await saveMedia(key, file); } catch (error) { console.error('Could not save photo', error); }
+  });
+  loadMedia(key).then((file) => displayPhoto(input, file || permanentPhotoUrls[index])).catch(() => displayPhoto(input, permanentPhotoUrls[index]));
+});
+
+const videoInput = document.querySelector('#video-input');
+videoInput.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  displayVideo(file);
+  try { await saveMedia('video', file); } catch (error) { console.error('Could not save video', error); }
+});
+loadMedia('video').then((file) => displayVideo(file || permanentVideoUrl)).catch(() => displayVideo(permanentVideoUrl));
 
 document.querySelector('#yes-btn').addEventListener('click', () => show('choices'));
 document.querySelector('#no-btn').addEventListener('click', () => { document.querySelector('#tease').textContent = 'Nice try Kuku 😂 Ab surprise toh dekhna hi padega!'; setTimeout(() => show('choices'), 1200); });
@@ -36,5 +116,3 @@ document.querySelector('#memories-btn').addEventListener('click', () => show('me
 document.querySelector('#video-btn').addEventListener('click', () => show('video-section'));
 document.querySelector('#final-btn').addEventListener('click', () => { show('finale'); confetti.classList.remove('party'); void confetti.offsetWidth; confetti.classList.add('party'); });
 document.querySelector('#replay-btn').addEventListener('click', () => { typed = false; document.querySelector('#message').textContent = ''; show('intro'); });
-document.querySelectorAll('.photo-card input').forEach((input) => input.addEventListener('change', () => { const file = input.files[0]; if (!file) return; const card = input.closest('.photo-card'); const placeholder = card.querySelector('.photo-placeholder'); placeholder.style.backgroundImage = `url(${URL.createObjectURL(file)})`; card.classList.add('has-photo'); }));
-document.querySelector('#video-input').addEventListener('change', (event) => { const file = event.target.files[0]; if (!file) return; const video = document.querySelector('#birthday-video'); video.src = URL.createObjectURL(file); video.classList.remove('is-hidden'); document.querySelector('#video-placeholder').classList.add('is-hidden'); });
