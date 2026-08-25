@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#fff8f1">
+  <title>For Kuku, from Junnu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Gochi+Hand&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="confetti" aria-hidden="true"></div>
+  <main>
+    <section class="screen intro is-active" id="intro" aria-labelledby="intro-title">
+      <div class="balloon balloon-pink"></div><div class="balloon balloon-yellow"></div>
+      <p class="eyebrow">a tiny birthday surprise from</p>
+      <div class="signature">Junnu <span>♥</span></div>
+      <div class="cake-illustration" aria-hidden="true"><span>✨</span><div class="candle"></div><div class="cake-top"></div><div class="cake-bottom"></div></div>
+      <h1 id="intro-title">Happy Birthday<br><em>Kuku</em> <span>🎂❤️</span></h1>
+      <p class="lead">Kuku, are you ready for the surprise<br>Junnu has planned for you? <span>👀🎁</span></p>
+      <div class="choice-row">
+        <button class="btn btn-primary" id="yes-btn">YES 😎</button>
+        <button class="btn btn-quiet" id="no-btn">NO 😏</button>
+      </div>
+      <p class="tease" id="tease" role="status"></p>
+      <div class="scroll-hint">tap a button, birthday boy <span>↓</span></div>
+    </section>
+
+    <section class="screen choices" id="choices" aria-labelledby="choices-title">
+      <p class="eyebrow">chapter one · the important decisions</p>
+      <div class="progress"><span></span></div>
+      <h2 id="choices-title">Kuku, pehle apna<br><em>birthday cake</em> choose karo 🎂</h2>
+      <div class="cake-grid" id="cake-grid">
+        <button class="cake-option" data-choice="The cutest cake"><span>🍰</span><b>Strawberry<br>dream</b></button>
+        <button class="cake-option" data-choice="The coolest cake"><span>🎂</span><b>Classic<br>cutie</b></button>
+        <button class="cake-option" data-choice="The yummiest cake"><span>🧁</span><b>Mini<br>masti</b></button>
+        <button class="cake-option" data-choice="The most Kuku cake"><span>🍩</span><b>Donut<br>delight</b></button>
+      </div>
+      <div class="mood-step is-hidden" id="mood-step">
+        <h2>Ab choose karo apna<br><em>birthday mood</em> 😎✨</h2>
+        <div class="mood-grid">
+          <button class="mood-option" data-mood="Cute Kuku">🥹 <span>Cute Kuku</span></button>
+          <button class="mood-option" data-mood="Crazy Kuku">😂 <span>Crazy Kuku</span></button>
+          <button class="mood-option" data-mood="Full Masti Mode">🤪 <span>Full Masti Mode</span></button>
+          <button class="mood-option" data-mood="Emotional Kuku">❤️ <span>Emotional Kuku</span></button>
+          <button class="mood-option" data-mood="Birthday King">👑 <span>Birthday King</span></button>
+        </div>
+      </div>
+      <div class="selection-note" id="selection-note" role="status"></div>
+    </section>
+
+    <section class="screen reveal" id="reveal" aria-labelledby="reveal-title">
+      <p class="eyebrow">chapter two · from your badi behen</p>
+      <div class="gift" aria-hidden="true">🎁</div>
+      <h2 id="reveal-title">Perfect! Ab Kuku ka<br><em>surprise ready hai…</em></h2>
+      <p class="chosen" id="chosen"></p>
+      <button class="btn btn-primary open-btn" id="open-btn">OPEN MY SURPRISE <span>♥</span></button>
+    </section>
+
+    <section class="screen letter" id="letter" aria-labelledby="letter-title">
+      <p class="eyebrow">a letter, typed with lots of love</p>
+      <div class="letter-paper">
+        <div class="paper-tape"></div><span class="paper-stamp">♥</span>
+        <h2 id="letter-title">Happy Birthday<br><em>meri jaan</em> ❤️🎂</h2>
+        <div class="typewriter" id="message"></div>
+        <button class="btn btn-primary continue-btn" id="memories-btn">SEE OUR MEMORIES <span>→</span></button>
+      </div>
+    </section>
+
+    <section class="screen memories" id="memories" aria-labelledby="memories-title">
+      <p class="eyebrow">chapter three · evidence of our nonsense</p>
+      <h2 id="memories-title">Kuku &amp; Junnu —<br><em>Our Crazy Memories</em> 😂❤️</h2>
+      <p class="section-subtitle">Tap any frame to add your real photo.</p>
+      <div class="gallery">
+        <label class="photo-card photo-one"><input type="file" accept="image/*"><span class="photo-placeholder">📸<small>our best<br>day out</small></span><b>Pagal h but caring h🥰</b></label>
+        <label class="photo-card photo-two"><input type="file" accept="image/*"><span class="photo-placeholder">🫂<small>partners<br>in crime</small></span><b>My forever little brother ❤️</b></label>
+        <label class="photo-card photo-three"><input type="file" accept="image/*"><span class="photo-placeholder">🍕<small>masti<br>department</small></span><b>Bro not by blood but by heart🫶🏻</b></label>
+        <label class="photo-card photo-four"><input type="file" accept="image/*"><span class="photo-placeholder">😂<small>classic<br>us</small></span><b>Kuku ki masti + Junnu ki daant😂</b></label>
+      </div>
+      <button class="text-btn" id="video-btn">one more surprise <span>↓</span></button>
+    </section>
+
+    <section class="screen video-section" id="video-section" aria-labelledby="video-title">
+      <p class="eyebrow">chapter four · press play, Kuku</p>
+      <h2 id="video-title">Kuku, Junnu ki taraf se<br><em>ek aur surprise…</em> ❤️</h2>
+      <label class="video-box" id="video-box">
+        <video id="birthday-video" controls playsinline class="is-hidden"></video>
+        <span class="video-placeholder" id="video-placeholder"><i>▶</i><b>Your birthday video<br>will live here</b><small>Tap to upload yours</small></span>
+        <input type="file" id="video-input" accept="video/*">
+      </label>
+      <button class="btn btn-primary final-btn" id="final-btn">FINISH THE SURPRISE <span>♥</span></button>
+    </section>
+
+    <section class="screen finale" id="finale" aria-labelledby="finale-title">
+      <div class="star-field" aria-hidden="true">✦　·　✧　·　✦</div>
+      <div class="final-cake">🎂</div>
+      <p class="eyebrow">and one last thing…</p>
+      <h2 id="finale-title">Happy Birthday,<br><em>Kuku!</em> 🎂❤️</h2>
+      <p class="final-copy">You have always been special to me, and you always will be. I’m so lucky and blessed to have you as my little brother. ❤️🥹❤️</p>
+      <div class="final-signoff">Love you always,<br><strong>Junnu 🫶🏻</strong><br><small>Your Badi Behen (Junnu)❤️</small></div>
+      <button class="text-btn" id="replay-btn">replay the magic ↻</button>
+    </section>
+  </main>
+  <script src="script.js"></script>
+</body>
+</html>
