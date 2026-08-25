@@ -17,10 +17,10 @@ let cakeChoice = '';
 const mediaDatabase = 'birthday-media';
 const mediaStore = 'uploads';
 const permanentPhotoUrls = [
-  'https://plain-apac-prod-public.komododecks.com/202608/25/lYXCBL8tJWIQXhxS9Ka4/image.jpg',
-  'https://plain-apac-prod-public.komododecks.com/202608/25/92XJS825fDC8ATsP8oaM/image.jpg',
-  'https://plain-apac-prod-public.komododecks.com/202608/25/GNpd7nyfczh7saBvozEc/image.jpg',
-  'https://plain-apac-prod-public.komododecks.com/202608/25/4WNYU4oHCY0W1f9APbks/image.jpg'
+  'assets/photo-1.jpg',
+  'assets/photo-2.jpg',
+  'assets/photo-3.jpg',
+  'assets/photo-4.jpg'
 ];
 const permanentVideoUrl = 'https://www.image2url.com/r2/default/videos/1787677649516-e67e3506-d57b-46ef-8a6b-71c5909a993c.mp4';
 
